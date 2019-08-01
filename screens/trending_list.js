@@ -38,7 +38,8 @@ export class TrendingList extends React.Component {
             mode="dialog"
             onValueChange={(item, index) => {
               this.setState({ lang: item, trendingList: [] });
-              this.fetchList();
+              setTimeout(()=>this.fetchList(), 2000)
+              
             }}
           >
             {langs.map((item, index) => (
@@ -57,7 +58,7 @@ export class TrendingList extends React.Component {
             mode="dialog"
             onValueChange={(item, index) => {
               this.setState({ period: item, trendingList: [] });
-              this.fetchList();
+              setTimeout(()=>this.fetchList(), 2000)
             }}
           >
             <Picker.Item color="#008081" label="Daily" value="Daily" />
