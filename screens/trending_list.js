@@ -87,7 +87,7 @@ export class TrendingList extends React.Component {
     try {
       this.setState({ refreshing: true });
       var git = await fetch(
-        `http://192.168.43.68:3000/?period=${period}&lang=${lang}`
+        `https://trendy-backend.herokuapp.com/?period=${period}&lang=${lang}`
       );
       this.setState({ refreshing: false });
       var result = await git.json();
