@@ -18,7 +18,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.sudotech.trendygit"
+    },
+    "android":{
+      "package": "com.sudotech.trendygit"
     }
   }
 }
