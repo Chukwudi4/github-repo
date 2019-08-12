@@ -6,7 +6,6 @@ import {
   Text,
   Picker,
   StyleSheet,
-  Animated
 } from 'react-native';
 import {
   RFPercentage as w,
@@ -14,33 +13,11 @@ import {
 } from 'react-native-responsive-fontsize';
 import { ScrollView } from 'react-native-gesture-handler';
 import { langs } from '../config/langs';
-import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { RectButton } from 'react-native-gesture-handler';
 export class TrendingList extends React.Component {
   state = {
     trendingList: [],
     lang: 'Javascript',
     period: 'Daily',
-  };
-
-  renderLeftActions = (progress, dragX) => {
-    const trans = dragX.interpolate({
-      inputRange: [0, 20, 70, 90],
-      outputRange: [-20, 0, 0, 1],
-    });
-    return (
-      <RectButton style={styles.leftAction} onPress={this.close}>
-        <Animated.Text
-          style={[
-            styles.actionText,
-            {
-              transform: [{ translateX: trans }],
-            },
-          ]}>
-          SHARE
-        </Animated.Text>
-      </RectButton>
-    );
   };
 
   render() {
@@ -61,8 +38,7 @@ export class TrendingList extends React.Component {
             mode="dialog"
             onValueChange={(item, index) => {
               this.setState({ lang: item, trendingList: [] });
-              setTimeout(()=>this.fetchList(), 2000)
-              
+              setTimeout(() => this.fetchList(), 2000);
             }}
           >
             {langs.map((item, index) => (
@@ -81,7 +57,7 @@ export class TrendingList extends React.Component {
             mode="dialog"
             onValueChange={(item, index) => {
               this.setState({ period: item, trendingList: [] });
-              setTimeout(()=>this.fetchList(), 2000)
+              setTimeout(() => this.fetchList(), 2000);
             }}
           >
             <Picker.Item color="#008081" label="DAILY" value="Daily" />
@@ -92,18 +68,15 @@ export class TrendingList extends React.Component {
           </Text>
           {trendingList.map((item, index) => {
             return (
-              <Swipeable
-                key={index}
-                renderLeftActions={this.renderLeftActions}>
+              <View key={index}>
                 <TrendingItem item={item} navigation={this.props.navigation} />
-              </Swipeable>
+              </View>
             );
           })}
         </ScrollView>
       </View>
     );
   }
-
   componentDidMount() {
     this.fetchList();
   }
@@ -117,6 +90,7 @@ export class TrendingList extends React.Component {
       );
       this.setState({ refreshing: false });
       var result = await git.json();
+      //console.log(result)
       this.setState({ trendingList: result });
     } catch (error) {
       console.warn(error.message);
@@ -127,20 +101,24 @@ export class TrendingList extends React.Component {
 const TrendingItem = props => {
   const { item, navigation } = props;
   return (
-      <TouchableOpacity
-        style={styles.itemTouch}
-        onPress={() =>
+    <TouchableOpacity
+      style={styles.itemTouch}
+      onPress={() =>
         navigation.navigate('TrendingDetail', {
           repo: `${item.name}`,
           author: `${item.author}`,
+          url: `${item.href}`,
         })
-        }
-      >
-        <Text style={styles.itemText}>
-          {item.author} <Text style={{ fontSize: v(14), fontWeight: 'normal' }}>{"\n"}{item.name}</Text>
+      }
+    >
+      <Text style={styles.itemText}>
+        {item.author}{' '}
+        <Text style={{ fontSize: v(14), fontWeight: 'normal' }}>
+          {'\n'}
+          {item.name}
         </Text>
-      </TouchableOpacity>
-    
+      </Text>
+    </TouchableOpacity>
   );
 };
 
@@ -157,30 +135,31 @@ const styles = StyleSheet.create({
     marginHorizontal: w(1),
     paddingHorizontal: w(2),
     paddingVertical: w(2.5),
-    backgroundColor: "#f6f6f6"
+    backgroundColor: '#f6f6f6',
   },
-  header:{
+  header: {
     color: '#008081',
     fontSize: v(15),
     margin: w(0.5),
-    fontWeight:'bold',
+    fontWeight: 'bold',
     marginHorizontal: w(1),
   },
-  itemTouch:{
-    shadowColor: "rgba(0, 0, 0, 0.36)",
+  itemTouch: {
+    shadowColor: 'rgba(0, 0, 0, 0.36)',
     shadowOffset: { width: 100, height: 100 },
     shadowRadius: 2,
     shadowOpacity: 1,
     elevation: 4,
-  },leftAction:{
+  },
+  leftAction: {
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     width: v(50),
     height: v(70),
-    backgroundColor: "#008081"
+    backgroundColor: '#008081',
   },
-  actionText:{
+  actionText: {
     color: 'white',
-    fontWeight: '900'
-  }
+    fontWeight: '900',
+  },
 });
