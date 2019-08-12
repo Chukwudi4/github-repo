@@ -1,1 +1,1 @@
-export const langs = ['Java', 'Javascript', 'Python', 'PHP', 'Ruby'];
+export const langs = ['JAVASCRIPT','JAVA', 'PYTHON', 'PHP', 'RUBY'];

@@ -6,6 +6,7 @@ import {
   Text,
   Picker,
   StyleSheet,
+  Animated
 } from 'react-native';
 import {
   RFPercentage as w,
@@ -13,11 +14,33 @@ import {
 } from 'react-native-responsive-fontsize';
 import { ScrollView } from 'react-native-gesture-handler';
 import { langs } from '../config/langs';
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+import { RectButton } from 'react-native-gesture-handler';
 export class TrendingList extends React.Component {
   state = {
     trendingList: [],
     lang: 'Javascript',
     period: 'Daily',
+  };
+
+  renderLeftActions = (progress, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [0, 20, 70, 90],
+      outputRange: [-20, 0, 0, 1],
+    });
+    return (
+      <RectButton style={styles.leftAction} onPress={this.close}>
+        <Animated.Text
+          style={[
+            styles.actionText,
+            {
+              transform: [{ translateX: trans }],
+            },
+          ]}>
+          SHARE
+        </Animated.Text>
+      </RectButton>
+    );
   };
 
   render() {
@@ -47,13 +70,13 @@ export class TrendingList extends React.Component {
                 color="#008081"
                 key={index}
                 label={item}
-                value={item}
+                value={item.toLowerCase}
               />
             ))}
           </Picker>
 
           <Picker
-            selectedValue={lang}
+            selectedValue={period}
             style={{ width: '100%', color: '#008081' }}
             mode="dialog"
             onValueChange={(item, index) => {
@@ -61,17 +84,19 @@ export class TrendingList extends React.Component {
               setTimeout(()=>this.fetchList(), 2000)
             }}
           >
-            <Picker.Item color="#008081" label="Daily" value="Daily" />
-            <Picker.Item color="#008081" label="Weekly" value="Weekly" />
+            <Picker.Item color="#008081" label="DAILY" value="Daily" />
+            <Picker.Item color="#008081" label="WEEKLY" value="Weekly" />
           </Picker>
-          <Text style={[styles.itemText, { fontSize: v(18) }]}>
+          <Text style={styles.header}>
             List of trending {lang} repositories ({period})
           </Text>
           {trendingList.map((item, index) => {
             return (
-              <View key={index}>
+              <Swipeable
+                key={index}
+                renderLeftActions={this.renderLeftActions}>
                 <TrendingItem item={item} navigation={this.props.navigation} />
-              </View>
+              </Swipeable>
             );
           })}
         </ScrollView>
@@ -102,18 +127,20 @@ export class TrendingList extends React.Component {
 const TrendingItem = props => {
   const { item, navigation } = props;
   return (
-    <TouchableOpacity
-      onPress={() =>
+      <TouchableOpacity
+        style={styles.itemTouch}
+        onPress={() =>
         navigation.navigate('TrendingDetail', {
           repo: `${item.name}`,
           author: `${item.author}`,
         })
-      }
-    >
-      <Text style={styles.itemText}>
-        {item.author}/ <Text style={{ fontWeight: 'bold' }}>{item.name}</Text>
-      </Text>
-    </TouchableOpacity>
+        }
+      >
+        <Text style={styles.itemText}>
+          {item.author} <Text style={{ fontSize: v(14), fontWeight: 'normal' }}>{"\n"}{item.name}</Text>
+        </Text>
+      </TouchableOpacity>
+    
   );
 };
 
@@ -124,8 +151,36 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#4422EE',
-    fontSize: v(14),
+    fontSize: v(15),
     margin: w(0.5),
+    fontWeight: 'bold',
+    marginHorizontal: w(1),
+    paddingHorizontal: w(2),
+    paddingVertical: w(2.5),
+    backgroundColor: "#f6f6f6"
+  },
+  header:{
+    color: '#008081',
+    fontSize: v(15),
+    margin: w(0.5),
+    fontWeight:'bold',
     marginHorizontal: w(1),
   },
+  itemTouch:{
+    shadowColor: "rgba(0, 0, 0, 0.36)",
+    shadowOffset: { width: 100, height: 100 },
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    elevation: 4,
+  },leftAction:{
+    justifyContent: 'center',
+    alignItems:'center',
+    width: v(50),
+    height: v(70),
+    backgroundColor: "#008081"
+  },
+  actionText:{
+    color: 'white',
+    fontWeight: '900'
+  }
 });

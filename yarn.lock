@@ -2260,10 +2260,10 @@ expo-file-system@~6.0.0:
   dependencies:
     uuid-js "^0.7.5"
 
-expo-font@~6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-6.0.0.tgz#6616ada2e7e358dd4a8eb1753bd0686a9f654603"
-  integrity sha512-VTKguIfFaCiSrrshts4hQQOngwESdWJ/2frZa/Okbr66noKIVBF8DJE7CH+8cpetn9Xj2JS/dt5ArA6Mk988zQ==
+expo-font@~6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-6.0.1.tgz#239b0468edf90d441dca20253c00b334e812c5c5"
+  integrity sha512-zQwGFTKSrsTWmFzS0l87i6TyqM0YFDK4ui4sSzpbdQsUHXpeG7wfa67i09roLS0xtp85nrR9Vm2bUJp9njV8JQ==
   dependencies:
     fontfaceobserver "^2.1.0"
 
@@ -2289,6 +2289,13 @@ expo-permissions@~6.0.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-6.0.0.tgz#2943f1aa98de833b88cea73cf03d18d08957cb68"
   integrity sha512-O+RdyfGiq7i+5Vi9fE38DgKn436lNWiqhnS5/Z7CC00bmKahhjVMNDbZvNn/nrdRGyaPneJk1Co1s1sexSnv0A==
 
+expo-sensors@~6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-6.0.0.tgz#4c8c40a210878474d3f3d6c083b4a6def90ee3c8"
+  integrity sha512-tzXW8+qPplpL/MydEBZlwKgZVPxtFOsW1qbinLN9DCH26t9oXPmaawYlgMXdGMrgE/iBickA59mbh5Vv/rhznA==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-sqlite@~6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-6.0.0.tgz#e7fe36b493a2230afdc77bdaedeab5f031690390"
@@ -2303,10 +2310,10 @@ expo-web-browser@~6.0.0:
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-6.0.0.tgz#63a59d4c02cd7ba47faa6a2eb04decb1a1ab2a32"
   integrity sha512-7XkFPd4PRlVP6FscTnn78c0tY6+yLzb2Eai/ed+l+LB+hZWuhyY3ONzYM7/IKAiPmfhZr4Qs80vIa7iiavti8A==
 
-expo@^34.0.1:
-  version "34.0.2"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-34.0.2.tgz#24ee5e5a2501ba460a8bca945b25aa9b4e41f43a"
-  integrity sha512-H3QDunoH4Dvl+w+ZS/AekKYyzGsxBeIfu7BD03NIz4CYf09XnTvrIXv9hqATOSOIbIpGsNmNKWXW9S68aKK04A==
+expo@^34.0.3:
+  version "34.0.3"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-34.0.3.tgz#5e2ac4ff2ddbcb2a095106d82e920e6a02a3dbaa"
+  integrity sha512-1WCg6ZpYuNQ1YdZ1vDjksB45mts2DnymHjRo7s1de5RB+Ym8SlhNelbQXOZTkdSicNg0dk9lENqcWPRAWwR2bA==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@expo/vector-icons" "^10.0.2"
@@ -2323,7 +2330,7 @@ expo@^34.0.1:
     expo-asset "~6.0.0"
     expo-constants "~6.0.0"
     expo-file-system "~6.0.0"
-    expo-font "~6.0.0"
+    expo-font "~6.0.1"
     expo-keep-awake "~6.0.0"
     expo-linear-gradient "~6.0.0"
     expo-location "~6.0.0"
@@ -4793,7 +4800,7 @@ react-native-view-shot@2.6.0:
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-2.6.0.tgz#3b23675826f67658366352c4b97b59a6aded2f43"
   integrity sha512-yO9vWi/11m2hEJl8FrW1SMeVzFfPtMKh20MUInGqlsL0H8Ya2JGGlFfrBzx1KiFR2hFb5OdsTLYNtcVZtJ6pLQ==
 
-react-native-web@^0.11.4:
+react-native-web@^0.11.5:
   version "0.11.5"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.11.5.tgz#adf2eff902fdb32e86be7877294d9a6bb0ad3815"
   integrity sha512-KVvE6s32uBgp5m1BNSfNOXvGo1wt/pORSKvi8oy8tdhAPYqsr0oMuMP3rZd8vk+MpiYt1Z8raS/n+DK2xj85Jg==
